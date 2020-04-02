@@ -6,6 +6,9 @@ import com.almat.phonebook.model.Contact;
 import com.almat.phonebook.repo.ContactRepo;
 import com.almat.phonebook.util.WebSocketSender;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,8 +33,8 @@ public class ContactRest {
     }
 
     @GetMapping
-    public List<Contact> getAll() {
-        return contactRepo.findAll();
+    public List<Contact> getAll(@PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC, page = 0, size = 3) Pageable pageable) {
+        return contactRepo.findAll(pageable).getContent();
     }
 
     @GetMapping("{id}")
@@ -65,6 +68,13 @@ public class ContactRest {
             webSocketSender.accept(EventType.UPDATE, savedContact);
         });
 
+    }
+
+    @GetMapping("/pagesize")
+    public int getPageSize(@PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC, size = 3) Pageable pageable) {
+        int a = contactRepo.findAll(pageable).getTotalPages();
+        System.out.println("pages: " + a);
+        return a;
     }
 
 }
