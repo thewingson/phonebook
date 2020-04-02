@@ -2,6 +2,7 @@ package com.almat.phonebook.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -16,6 +17,7 @@ import javax.persistence.*;
 })
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Contact {
 
     @Id
