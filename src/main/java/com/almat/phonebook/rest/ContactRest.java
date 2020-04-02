@@ -61,8 +61,8 @@ public class ContactRest {
 
         contactFromDb.ifPresent(contactPresent -> {
             contactPresent.setId(id);
-            contactPresent.setName(contact.getName());
-            contactPresent.setNumber(contact.getNumber());
+            contactPresent.setPersonName(contact.getPersonName());
+            contactPresent.setPhoneNumber(contact.getPhoneNumber());
 
             Contact savedContact = contactRepo.save(contactPresent);
             webSocketSender.accept(EventType.UPDATE, savedContact);

@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "contact",
         uniqueConstraints = {
-                @UniqueConstraint(name = "unique_number", columnNames = "number")
+                @UniqueConstraint(name = "unique_phone_number", columnNames = "phone_number")
 })
 @Data
 @AllArgsConstructor
@@ -25,10 +25,10 @@ public class Contact {
     @SequenceGenerator(sequenceName = "contact_id_seq", name = "contact_seq", allocationSize = 1)
     private Long id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "person_name", nullable = false)
+    private String personName;
 
-    @Column(name = "number", nullable = false)
-    private String number;
+    @Column(name = "phone_number", nullable = false)
+    private String phoneNumber;
 
 }
