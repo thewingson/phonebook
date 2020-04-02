@@ -7,8 +7,8 @@ function parseContacts(message) {
     for (var i = 0; i < parsedJSON.length; i++) {
         var contact = {
             id: parsedJSON[i].id,
-            name: parsedJSON[i].name,
-            number: parsedJSON[i].number};
+            personName: parsedJSON[i].personName,
+            phoneNumber: parsedJSON[i].phoneNumber};
         addElement(contact);
     }
 }
@@ -60,11 +60,11 @@ function addElement(contact) {
         "<td>" + contact.id +
         "<input type='hidden' name=\"contactId\" value=\""+contact.id+"\">" +
         "</td>" +
-        "<td>" + contact.name +
-        "<input type='hidden' name=\"contactName\" value=\""+contact.name+"\">" +
+        "<td>" + contact.personName +
+        "<input type='hidden' name=\"contactName\" value=\""+contact.personName+"\">" +
         "</td>" +
-        "<td>" + contact.number +
-        "<input type='hidden' name=\"contactNumber\" value=\""+contact.number+"\">" +
+        "<td>" + contact.phoneNumber +
+        "<input type='hidden' name=\"contactNumber\" value=\""+contact.phoneNumber+"\">" +
         "</td>" +
         "<td>" +
         "<button class=\"btn btn-info\" onclick=\"updateButton(this)\">Edit</button>" +
@@ -91,7 +91,7 @@ function addButton() {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("POST", URL_CONTACT, false);
     xmlHttp.setRequestHeader("Content-Type", "application/json");
-    xmlHttp.send(JSON.stringify({'name': $("#addName").val(), 'number': $("#addNumber").val()}));
+    xmlHttp.send(JSON.stringify({'personName': $("#addName").val(), 'phoneNumber': $("#addNumber").val()}));
 
     $("#addForm #addName").val('');
     $("#addForm #addNumber").val('');
@@ -132,7 +132,7 @@ function updateDo() {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("PUT", URL_CONTACT + '/' + contactId, false);
     xmlHttp.setRequestHeader("Content-Type", "application/json");
-    xmlHttp.send(JSON.stringify({'name': contactName, 'number': contactNumber}));
+    xmlHttp.send(JSON.stringify({'personName': contactName, 'phoneNumber': contactNumber}));
 }
 function getPage(page){
     var xmlHttp = new XMLHttpRequest();

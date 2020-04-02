@@ -2,7 +2,6 @@
 -- DROP TABLE CONTACT;
 -- DROP TABLE "flyway_schema_history";
 
-
 create sequence CONTACT_ID_SEQ start with 1 increment by  1;
 create table CONTACT (
 ID bigint,
